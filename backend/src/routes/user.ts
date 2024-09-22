@@ -45,7 +45,7 @@ user.post('/signup',async(c)=>{
     console.log(userd);
   
     const token = await sign({id:userd.id},c.env.secret);
-    console.log(token)
+    
     return c.json({
       jwtToken:token
     })
