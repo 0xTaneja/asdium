@@ -17,9 +17,17 @@ export function Account({type}:{type:"signup"|"signin"})
        try{
         const response=await axios.post(`${BACKEND_URL}/api/v1/user/${type==="signup"?"signup":"signin"}`,postinputs);
         const jwt=response.data;
-        console.log(jwt)
-        const jwtToken = typeof jwt === 'string' ? jwt : jwt.jwttoken; // Extract the token if it's an object
-        localStorage.setItem("token", jwtToken); // Store only the token string        
+          // console.log(jwt)
+        if(type==="signup")
+        {
+            const jwtToken = typeof jwt === 'string' ? jwt : jwt.jwtToken;
+            localStorage.setItem("token", jwtToken);
+        }
+        else
+        {
+            const jwttoken = typeof jwt === 'string' ? jwt : jwt.jwttoken;
+            localStorage.setItem("token", jwttoken);
+        } // Store only the token string        
         navigate("/blogs");
         
        }
