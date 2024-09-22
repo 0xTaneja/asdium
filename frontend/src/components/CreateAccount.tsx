@@ -18,7 +18,7 @@ export function Account({type}:{type:"signup"|"signin"})
         const response=await axios.post(`${BACKEND_URL}/api/v1/user/${type==="signup"?"signup":"signin"}`,postinputs);
         const jwt=response.data;
         console.log(jwt)
-        const jwtToken = typeof jwt === 'string' ? jwt : jwt.jwtToken; // Extract the token if it's an object
+        const jwtToken = typeof jwt === 'string' ? jwt : jwt.jwttoken; // Extract the token if it's an object
         localStorage.setItem("token", jwtToken); // Store only the token string        
         navigate("/blogs");
         
